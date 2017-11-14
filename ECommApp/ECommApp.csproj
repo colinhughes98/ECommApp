@@ -180,6 +180,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ECommApp.Business\ECommApp.Business.csproj">
+      <Project>{31294742-D4FA-4EAD-BA22-E86B53796581}</Project>
+      <Name>ECommApp.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ECommApp.Data\ECommApp.Data.csproj">
       <Project>{84296b0b-4ff1-4cc0-9271-274e7591ffc0}</Project>
       <Name>ECommApp.Data</Name>
