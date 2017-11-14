@@ -1,30 +1,38 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ECommApp.Data;
+using ECommApp.Models;
 
 namespace ECommApp.Controllers
 {
     public class HomeController : Controller
     {
+        // GET: Home
         public ActionResult Index()
         {
-            return View();
-        }
+            //this will be in a service
+            IRepo<IList<Supplier>> supplierRepo = new SupplierRepository();
+            var allSuppliers = supplierRepo.GetAll();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            IList<SupplierViewModel> listViewModels = new List<SupplierViewModel>();
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (allSuppliers != null)
+            {
+                foreach (var supplier in allSuppliers)
+                {
+                    var viewModel = new SupplierViewModel
+                    {
+                        Address = supplier.Address
+                    };
+                    listViewModels.Add(viewModel);
+                }
+            }
+            
+            return View(listViewModels);
         }
     }
 }
